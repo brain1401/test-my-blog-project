@@ -23,8 +23,8 @@ export default function PostCard({ post }: Props) {
         </div>
 
         <div>
-          <time className="text-end">{post.date.toString()}</time>
-          <h2 className="h-7 text-center text-xl font-bold">{post.title}</h2>
+          <time className="block text-end mr-4">{post.date.toString()}</time>
+          <h2 className="h-7 mt-1 text-center text-xl font-bold">{post.title}</h2>
           <p className="my-2 h-5 text-center text-sm font-semibold">{post.description}</p>
           <div className="mx-auto my-6 w-28 rounded-xl border border-cyan-200 text-center">
             {post.category}
