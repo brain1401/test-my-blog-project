@@ -10,9 +10,11 @@ export default function Profile() {
       </div>
       <h2 className="text-3xl font-bold">{"Hi, I'm Aiden"}</h2>
       <h4 className="text-xl font-semibold ">College Student</h4>
-      <p className="mb-3">프론트엔드 개발자를 꿈꾸는 대학생</p>
-      <Link href='/contact' className="appearance-none border border-sky-500 p-1.5 rounded-xl font-bold">
-        Contact Me
+      <p className="">프론트엔드 개발자를 꿈꾸는 대학생</p>
+      <Link href="/contact">
+        <button className="m-2 appearance-none rounded-xl border border-sky-500 p-1.5 font-bold">
+          Contact Me
+        </button>
       </Link>
     </div>
   );
