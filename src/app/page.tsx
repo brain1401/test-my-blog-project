@@ -1,9 +1,13 @@
+import FeaturedPostCrads from "@/components/FeaturedPostCards";
 import Profile from "@/components/Profile";
 
-export default function HomePage() {
+export default async function HomePage() {
+
   return (
     <section>
-      <Profile/>
+      <Profile />
+      {/* @ts-expect-error Async Server Component */ }
+      <FeaturedPostCrads />
     </section>
   );
 }
