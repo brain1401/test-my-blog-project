@@ -8,10 +8,10 @@ export default function PostGrid({posts}: Props) {
 
   return (
     <>
-      <ul className="flex flex-wrap w-5/6 mx-auto justify-around">
+      <ul className="flex w-full flex-wrap justify-center items-center ">
         {posts.map((post) => (
           <li key={post.path} className="">
-            <PostCard post={post} />
+            <PostCard post={post} margin="2" />
           </li>
         ))}
       </ul>

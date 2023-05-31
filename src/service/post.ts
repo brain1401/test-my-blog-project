@@ -22,4 +22,6 @@ export async function getPost(path: string): Promise<Post | undefined> {
   const posts = await getPosts();
 
   return posts.find((item) => item.path === path);
+
 }
+
