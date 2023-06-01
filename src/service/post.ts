@@ -11,30 +11,37 @@ export type Post = {
   featured: boolean;
 };
 
-export type PostData = Post & { content: string };
+export type PostData = Post & {
+  content: string;
+  next: Post | null;
+  prev: Post | null;
+};
 
 export async function getPosts(): Promise<Post[]> {
   const filepath = path.join(process.cwd(), "data", "posts.json");
   const data = await fs.readFile(filepath, "utf-8");
-  const posts:Post[] = JSON.parse(data);
+  const posts: Post[] = JSON.parse(data);
 
-  return posts.sort((a, b) => (a.date > b.date ? -1 : 1))
+  return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
 }
 
 export async function getPost(path: string): Promise<Post | undefined> {
   const posts = await getPosts();
 
   return posts.find((item) => item.path === path);
-
 }
 
-export async function getPostData(filename:string) : Promise<PostData> {
-  const filepath = path.join(process.cwd(), 'data','posts', `${filename}.md`);
-  const metadata = await getPosts()
-  .then(posts => posts.find(post => post.path === filename));
-  if(!metadata) throw new Error(`${filename}에 해당하는 포스트를 찾을 수 없음`);
+export async function getPostData(filename: string): Promise<PostData> {
+  const filepath = path.join(process.cwd(), "data", "posts", `${filename}.md`);
+  const posts = await getPosts();
+  const post = posts.find((post) => post.path === filename);
+  if (!post) throw new Error(`${filename}에 해당하는 포스트를 찾을 수 없음`);
 
-  const content = await readFile(filepath, 'utf-8');
+  const index = posts.indexOf(post);
+  const next = index > 0 ? posts[index - 1] : null;
+  const prev = index < posts.length - 1 ? posts[index + 1] : null;
 
-  return {...metadata, content}
+  const content = await readFile(filepath, "utf-8");
+
+  return { ...post, content, next, prev };
 }
