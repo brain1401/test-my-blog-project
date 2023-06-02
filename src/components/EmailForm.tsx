@@ -1,7 +1,8 @@
 "use client";
 import { sendContactEmail } from "@/service/sendEmail";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, use } from "react";
 import Banner, {BannerData} from "./Banner";
+import { sendNonify } from "@/service/notilab";
 
 
 type Data = {
