@@ -26,7 +26,7 @@ type Type = {
 
 export default function MultiCarousel({children}: Type) {
   return (
-    <Carousel swipeable infinite autoPlay responsive={responsive}>
+    <Carousel itemClass="flex justify-center item-center" infinite autoPlay responsive={responsive}>
       {children}
     </Carousel>
   )

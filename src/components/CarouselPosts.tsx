@@ -8,11 +8,11 @@ export default async function CarouselCase() {
 
   return (
     <section className="mt-10">
-      <div className="mx-auto w-11/12">
-        <h2 className="text-lg font-semibold">You May Like</h2>
+      <div className="mx-auto w-11/12 ">
+        <h2 className="text-lg font-semibold m-2">You May Like</h2>
         <MultiCarousel>
           {posts.map((post) => (
-            <PostCard key={post.path} post={post} />
+            <PostCard margin="0" key={post.path} post={post} />
           ))}
         </MultiCarousel>
       </div>
