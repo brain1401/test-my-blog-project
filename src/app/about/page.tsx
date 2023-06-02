@@ -1,5 +1,11 @@
+import Profile from "@/components/Profile";
+import ProfileContentBox from "@/components/ProfileContentBox";
+
 export default function AboutPage() {
   return (
-    <p>나에대해</p>
-  )
+    <article>
+      <Profile />
+      <ProfileContentBox />
+    </article>
+  );
 }
