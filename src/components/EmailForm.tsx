@@ -1,41 +1,35 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
-import Banner from "./Banner";
-import { BannerData } from "./Banner";
 import { sendContactEmail } from "@/service/sendEmail";
+import { useState, ChangeEvent, FormEvent } from "react";
+import Banner, {BannerData} from "./Banner";
+
+
+type Data = {
+  from: string;
+  subject: string;
+  message: string;
+};
 
 const TITLE_STYLE = "text-white m-2";
 const INPUT_STYLE = `border border-black mx-2 `;
-
-type Data = {
-  from: "";
-  subject: "";
-  message: "";
+const INITIAL_DATA = {
+  from: "",
+  subject: "",
+  message: "",
 };
 
-export default async function EmailForm() {
+
+
+export default function EmailForm() {
+  const [datas, setDatas] = useState<Data>(INITIAL_DATA);
   const [banner, setBanner] = useState<BannerData | null>(null);
 
-  const [datas, setDatas] = useState<Data>({
-    from: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = event.target;
-
-    setDatas((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setDatas((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onClick = () => {};
-
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     sendContactEmail(datas)
       .then(() => {
@@ -43,11 +37,7 @@ export default async function EmailForm() {
           message: "메일을 성공적으로 보냈습니다.",
           state: "success",
         });
-        setDatas({
-          from: "",
-          subject: "",
-          message: "",
-        });
+        setDatas(INITIAL_DATA);
       })
       .catch(() => {
         setBanner({
@@ -74,19 +64,23 @@ export default async function EmailForm() {
         </label>
         <input
           className={INPUT_STYLE}
+          type="email"
           name="from"
-          onChange={handleInputChange}
+          id="from"
+          onChange={onChange}
           value={datas.from}
-          autoFocus
           required
+          autoFocus
         />
         <label htmlFor="subject" className={TITLE_STYLE}>
           Subject
         </label>
         <input
           className={INPUT_STYLE}
+          type="text"
           name="subject"
-          onChange={handleInputChange}
+          id="subject"
+          onChange={onChange}
           value={datas.subject}
           required
         />
@@ -96,16 +90,12 @@ export default async function EmailForm() {
         <textarea
           className={INPUT_STYLE + `h-80`}
           name="message"
-          onChange={handleInputChange}
+          id="message"
+          onChange={onChange}
           value={datas.message}
           required
         />
-        <button
-          className="m-3 rounded bg-yellow-300 font-bold"
-          onClick={onClick}
-        >
-          Submit
-        </button>
+        <button className="m-3 rounded bg-yellow-300 font-bold">Submit</button>
       </form>
     </>
   );

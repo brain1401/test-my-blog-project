@@ -31,7 +31,6 @@ export default function ContactPage() {
         Or Send me an email
       </h2>
 
-      {/* @ts-expect-error Async Server Component */}
       <EmailForm />
     </article>
   );
