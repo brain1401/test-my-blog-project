@@ -8,7 +8,7 @@ export default function Banner({banner: {message, state}}: {banner: BannerData})
   const icon = isSuccess ? "✅" : "❌";
 
   return (
-    <p className={`p-2 m-3 w-48 text-center mx-auto rounded-xl ${isSuccess ? 'bg-green-300' : 'bg-red-500'}`}>
+    <p className={`p-2 m-3 w-fit text-center mx-auto rounded-xl ${isSuccess ? 'bg-green-300' : 'bg-red-500'}`}>
       {`${icon} ${message}`}
     </p>
   )

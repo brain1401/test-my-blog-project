@@ -8,14 +8,16 @@ const bodySchema = yup.object().shape({
 });
 
 export async function POST(req: Request) {
-  if (!bodySchema.isValidSync(req.body)) {
+
+  const body = await req.json();
+
+  if (!bodySchema.isValidSync(body)) {
     return new Response(JSON.stringify({ message: "메일 전송에 실패함!" }), {
       status: 400,
     });
   }
-  const { from, subject, message } = req.body;
 
-  return sendEmail(req.body)
+  return sendEmail(body)
     .then(
       () =>
         new Response(JSON.stringify({ message: "메일을 성공적으로 보냈음" }), {
