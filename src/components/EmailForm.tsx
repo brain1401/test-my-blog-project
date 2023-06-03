@@ -2,7 +2,7 @@
 import { sendContactEmail } from "@/service/sendEmail";
 import { useState, ChangeEvent, FormEvent, use } from "react";
 import Banner, {BannerData} from "./Banner";
-import { sendNonify } from "@/service/notilab";
+import { notilab } from "@/service/notilab";
 
 
 type Data = {
@@ -57,7 +57,7 @@ export default function EmailForm() {
     <>
       {banner && <Banner banner={banner} />}
       <form
-        className=" mx-auto flex h-fit w-3/5 flex-col rounded-xl bg-slate-600 p-2"
+        className=" mx-auto flex h-fit w-11/12 flex-col rounded-xl bg-slate-600 p-2 md:w-2/4"
         onSubmit={onSubmit}
       >
         <label htmlFor="from" className={TITLE_STYLE}>
@@ -96,7 +96,11 @@ export default function EmailForm() {
           value={datas.message}
           required
         />
-        <button className="m-3 rounded bg-yellow-300 font-bold">Submit</button>
+        <button
+          className="m-3 rounded bg-yellow-300 font-bold"
+        >
+          Submit
+        </button>
       </form>
     </>
   );

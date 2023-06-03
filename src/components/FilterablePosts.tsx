@@ -5,6 +5,7 @@ import { useState } from "react";
 import PostGrid from "./PostGrid";
 import Categories from "./Categories";
 
+
 type Props = {
   posts: Post[];
   categories: string[];
