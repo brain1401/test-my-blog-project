@@ -3,20 +3,29 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
-import Nav_menu from "./Nav_menu";
+import MobileNavBar from "./MobileNavBar";
+import DesktopNavBar from "./DesktopNavBar";
+
+type mediaQueryType = {
+  children: React.JSX.Element;
+};
 
 export default function Header() {
-  const isDesktop: boolean = useMediaQuery({
-    query: "(min-width:1024px)",
-  });
-  const isTablet: boolean = useMediaQuery({
-    query: "(min-width:768px) and (max-width:1023px)",
-  });
   const isMobile: boolean = useMediaQuery({
     query: "(max-width:767px)",
   });
 
   const [showMenu, setShowmenu] = useState<boolean>(false);
+  const [Mobile, setMobile] = useState<boolean>(true);
+
+
+  useEffect(() => {
+     if (isMobile) {
+       setMobile(true);
+     } else {
+       setMobile(false);
+     }
+  }, [isMobile]);
 
   useEffect(() => {
     console.log("showMenu : " + showMenu);
@@ -36,13 +45,10 @@ export default function Header() {
               onClick={() => setShowmenu(!showMenu)}
             />
           </div>
-
-          {!isMobile ? (
-            <Nav_menu setShowmenu={setShowmenu} />
-          ) : showMenu ? (
-            <Nav_menu setShowmenu={setShowmenu} />
+          {Mobile ? (
+            showMenu && <MobileNavBar setShowMenu={setShowmenu} />
           ) : (
-            ""
+            <DesktopNavBar />
           )}
         </div>
       </nav>
