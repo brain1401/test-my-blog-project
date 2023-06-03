@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { SetStateAction } from "react";
 
-const LINK_STYLE = "bg-gray-400 p-2 border text-center font-bold";
+const LINK_STYLE = "bg-cyan-300 p-2 m-1 border rounded-xl text-center font-bold";
 
 type Props = {
   setShowMenu: (value: SetStateAction<boolean>) => void;
