@@ -21,7 +21,7 @@ export default function FilterablePosts({ posts, categories }: Props) {
       : posts.filter((post) => post.category === selected);
 
   return (
-    <section className="flex m-4">
+    <section className="flex flex-col-reverse 2xl:flex 2xl:flex-row 2xl:w-full">
       <PostGrid posts={filtered} />
       <Categories categories={[ALL_POSTS, ...categories]} selected={selected} onClick={(selected) => setSelected(selected)}/>
     </section>
