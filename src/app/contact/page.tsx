@@ -1,5 +1,11 @@
 import EmailForm from "@/components/EmailForm";
+import { Metadata } from "next";
 import { BsGithub, BsInstagram } from "react-icons/bs";
+
+export const metadata: Metadata = {
+  title: 'Contact Me',
+  description: 'Aiden에게 연락하기'
+}
 
 const LINKS = [
   { icon: <BsGithub />, url: "https://github.com/brain1401", description: "Github" },

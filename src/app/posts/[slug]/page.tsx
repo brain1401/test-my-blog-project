@@ -11,6 +11,14 @@ type Type = {
   };
 };
 
+export async function generateMetadata({ params: { slug } }: Type) {
+    const {title, description} = await getPostData(slug);
+    return {
+      title,
+      description
+    }
+}
+
 export default async function PostPage({ params: { slug } }: Type) {
   const post = await getPostData(slug);
   const { title, path, next, prev } = post;

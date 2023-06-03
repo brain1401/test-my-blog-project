@@ -6,8 +6,14 @@ import Footer from "@/components/Footer";
 const inter = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "에이든의 블로그",
-  description: "Aiden Hong의 블로그",
+  title: {
+    default: '에이든의 블로그',
+    template: '에이든의 블로그 | %s'
+  },
+  description: "대학생 Aiden의 블로그",
+  icons: {
+    icon: '/favicon.ico'
+  }
 };
 
 export default function RootLayout({
